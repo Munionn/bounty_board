@@ -1,0 +1,39 @@
+{
+  "name": "bounty_board",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "cargo build --workspace",
+    "test": "cargo test --workspace",
+    "check": "cargo check --workspace",
+    "build:all": "cargo build --workspace",
+    "test:all": "cargo test --workspace",
+    "check:all": "cargo check --workspace",
+    "blockchain:build": "node -e 'fs.existsSync(\"blockchain/target\") || fs.symlinkSync(\"../target\", \"blockchain/target\")' && cd blockchain && anchor build",
+    "blockchain:test": "node -e 'fs.existsSync(\"blockchain/target\") || fs.symlinkSync(\"../target\", \"blockchain/target\")' && cd blockchain && anchor test",
+    "blockchain:test:unit": "cargo test -p bounty_board",
+    "server:run": "cargo run -p server",
+    "server:build": "cargo build -p server",
+    "server:test": "cargo test -p server",
+    "client:build": "cargo build -p client",
+    "client:test": "cargo test -p client"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@coral-xyz/anchor": "^0.32.1",
+    "@solana/web3.js": "^1.98.4",
+    "@types/bn.js": "^5.2.0",
+    "@types/chai": "^5.2.3",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^22.13.1",
+    "chai": "^6.2.2",
+    "mocha": "^11.8.0",
+    "ts-mocha": "^11.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  }
+}
