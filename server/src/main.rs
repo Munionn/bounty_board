@@ -1,58 +1,52 @@
-use axum::{extract::State, http::StatusCode, routing::get, Json, Router};
-use serde::{Deserialize, Serialize};
-use std::{
-    collections::HashMap,
-    sync::{Arc, Mutex},
-};
+mod db;
+mod dto;
+mod handlers;
+mod models;
+mod routes;
+
+use sqlx::PgPool;
 use tower_http::cors::CorsLayer;
 use tracing_subscriber::EnvFilter;
 
-#[derive(Clone, Default)]
-struct AppState {
-    /// Off-chain bounty metadata keyed by on-chain bounty id.
-    bounties: Arc<Mutex<HashMap<u64, BountyMeta>>>,
-}
-
-#[derive(Debug, Clone, Serialize, Deserialize)]
-struct BountyMeta {
-    id: u64,
-    title: String,
-    description: String,
-    poster: String,
-    amount_lamports: u64,
-}
-
-#[derive(Debug, Deserialize)]
-struct CreateBountyRequest {
-    id: u64,
-    title: String,
-    description: String,
-    poster: String,
-    amount_lamports: u64,
+#[derive(Clone)]
+pub struct AppState {
+    pub db: PgPool,
 }
 
 #[tokio::main]
 async fn main() {
+    dotenvy::dotenv().ok();
+
     tracing_subscriber::fmt()
         .with_env_filter(EnvFilter::from_default_env().add_directive("info".parse().unwrap()))
         .init();
 
-    let state = AppState::default();
+    let database_url = std::env::var("DATABASE_URL").expect("DATABASE_URL must be set in .env");
 
-    let app = Router::new()
-        .route("/health", get(health))
-        .route("/", get(|| async { "server is ok" }))
+    let db = db::db_connection(&database_url)
+        .await
+        .expect("failed to connect to database");
+
+    db::run_migrations(&db)
+        .await
+        .expect("failed to run database migrations");
+
+    tracing::info!("connected to postgres and migrations applied");
+
+    let state = AppState { db };
+
+    let app = routes::router()
         .layer(CorsLayer::permissive())
         .with_state(state);
 
-    let listener = tokio::net::TcpListener::bind("0.0.0.0:3000")
+    let host = std::env::var("HOST").unwrap_or_else(|_| "0.0.0.0".into());
+    let port = std::env::var("PORT").unwrap_or_else(|_| "3000".into());
+    let addr = format!("{host}:{port}");
+
+    let listener = tokio::net::TcpListener::bind(&addr)
         .await
-        .expect("failed to bind :3000");
+        .unwrap_or_else(|err| panic!("failed to bind {addr}: {err}"));
 
-    tracing::info!("server listening on http://0.0.0.0:3000");
+    tracing::info!("server listening on http://{addr}");
     axum::serve(listener, app).await.expect("server failed");
-}
-
-async fn health() -> &'static str {
-    "ok"
 }
