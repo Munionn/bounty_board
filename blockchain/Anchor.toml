@@ -1,4 +1,4 @@
-skip_local_validator = false
+skip_local_validator = true
 
 [toolchain]
 
@@ -7,10 +7,13 @@ resolution = true
 skip-lint = false
 
 [programs.localnet]
-bounty_board = "Hw8AqRxBe2BxAS5AByHThA5A8xNWAifPx514B9FDKfq9"
+bounty_board = "4LSnV5QYxrXohJUHzQFUuj2YfQH3bWAscWUyQVuk4ELg"
+
+[programs.devnet]
+bounty_board = "4LSnV5QYxrXohJUHzQFUuj2YfQH3bWAscWUyQVuk4ELg"
 
 [provider]
-cluster = "localnet"
+cluster = "devnet"
 wallet = "~/.config/solana/id.json"
 
 [scripts]

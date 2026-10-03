@@ -1,0 +1,135 @@
+.bounty-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 1.1rem 1.2rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  text-align: left;
+}
+
+.bounty-card__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.bounty-card__title {
+  margin: 0;
+  font-family: var(--display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.bounty-card__title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.bounty-card__title a:hover {
+  color: var(--accent-strong);
+}
+
+.bounty-card__status {
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+}
+
+.bounty-card__status--claimed {
+  background: rgba(12, 18, 34, 0.06);
+  color: var(--text-h);
+}
+
+.bounty-card__status--closed {
+  background: rgba(180, 35, 24, 0.08);
+  color: #b42318;
+}
+
+.bounty-card__desc {
+  margin: 0;
+  color: var(--text);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.bounty-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.1rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.bounty-card__submission {
+  margin: 0;
+  font-size: 0.85rem;
+  word-break: break-all;
+}
+
+.bounty-card__submission a {
+  color: var(--accent-strong);
+}
+
+.bounty-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.bounty-card__actions .btn {
+  padding: 0.55rem 0.95rem;
+  font-size: 0.85rem;
+}
+
+.bounty-card__submit {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding-top: 0.35rem;
+  border-top: 1px solid var(--line);
+}
+
+.bounty-card__submit label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-h);
+}
+
+.bounty-card__submit input {
+  font: inherit;
+  font-weight: 400;
+  padding: 0.65rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: #f7f8fa;
+}
+
+.bounty-card__muted {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.bounty-card__error {
+  margin: 0;
+  color: #b42318;
+  font-size: 0.85rem;
+}

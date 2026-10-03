@@ -3,7 +3,7 @@ use axum::{
     routing::{get, post},
 };
 
-use crate::AppState;
+use crate::app::AppState;
 use crate::handlers::auth_handler::{get_nonce, me, verify_signature};
 
 pub fn router() -> Router<AppState> {

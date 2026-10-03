@@ -9,7 +9,7 @@ pub use constants::*;
 pub use instructions::*;
 pub use state::*;
 
-declare_id!("Hw8AqRxBe2BxAS5AByHThA5A8xNWAifPx514B9FDKfq9");
+declare_id!("4LSnV5QYxrXohJUHzQFUuj2YfQH3bWAscWUyQVuk4ELg");
 
 #[program]
 pub mod bounty_board {

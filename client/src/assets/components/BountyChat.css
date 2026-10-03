@@ -1,0 +1,153 @@
+.bounty-chat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.bounty-chat__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.bounty-chat__header h2 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.bounty-chat__status {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.2rem 0.45rem;
+  border-radius: 999px;
+  background: rgba(12, 18, 34, 0.06);
+  color: var(--text-h);
+}
+
+.bounty-chat__status--open {
+  background: rgba(16, 120, 88, 0.12);
+  color: #0f766e;
+}
+
+.bounty-chat__status--connecting {
+  background: rgba(180, 120, 0, 0.12);
+  color: #a16207;
+}
+
+.bounty-chat__status--error,
+.bounty-chat__status--closed {
+  background: rgba(180, 35, 24, 0.08);
+  color: #b42318;
+}
+
+.bounty-chat__messages {
+  max-height: 320px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.bounty-chat__message {
+  max-width: 85%;
+  padding: 0.55rem 0.7rem;
+  border-radius: 10px;
+  background: rgba(12, 18, 34, 0.04);
+}
+
+.bounty-chat__message--mine {
+  align-self: flex-end;
+  background: var(--accent-soft);
+}
+
+.bounty-chat__message header {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+  font-size: 0.75rem;
+  color: var(--text-h);
+}
+
+.bounty-chat__message p {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.bounty-chat__attachments {
+  margin: 0.35rem 0 0;
+  padding-left: 0;
+  list-style: none;
+  font-size: 0.85rem;
+}
+
+.bounty-chat__attachment-link,
+.bounty-chat__attachment-preview-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: var(--accent-strong);
+  cursor: pointer;
+  text-align: left;
+}
+
+.bounty-chat__attachment-preview {
+  margin: 0.25rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.bounty-chat__composer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.bounty-chat__pending-files {
+  margin: 0;
+  padding-left: 1rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.bounty-chat__composer-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.65rem;
+  align-items: end;
+}
+
+.bounty-chat__file-input {
+  max-width: 9rem;
+  font-size: 0.8rem;
+}
+
+.bounty-chat__composer textarea {
+  width: 100%;
+  resize: vertical;
+  min-height: 3rem;
+  padding: 0.65rem 0.75rem;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  font: inherit;
+}
+
+.bounty-chat__muted {
+  margin: 0;
+  color: var(--text-h);
+}
+
+.bounty-chat__error {
+  margin: 0;
+  color: #b42318;
+  font-size: 0.9rem;
+}

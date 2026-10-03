@@ -3,7 +3,7 @@ use axum::{
     routing::{get, patch, post},
 };
 
-use crate::AppState;
+use crate::app::AppState;
 use crate::handlers::bounty_handler::{
     confirm_bounty, create_bounty, delete_bounty, get_bounty, list_bounties, sync_bounty,
     update_bounty, update_bounty_status,
@@ -24,4 +24,5 @@ pub fn router() -> Router<AppState> {
             "/{id}/submissions",
             get(list_submissions).post(create_submission),
         )
+        .nest("/{id}/chat", super::chat_route::router())
 }

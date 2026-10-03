@@ -3,7 +3,7 @@ use axum::{
     routing::get,
 };
 
-use crate::AppState;
+use crate::app::AppState;
 use crate::handlers::users_handler::{
     create_user, delete_user, get_user, get_user_by_wallet, list_users, update_user,
 };

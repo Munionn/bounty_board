@@ -4,7 +4,7 @@ use uuid::Uuid;
 #[derive(Debug, Clone, Deserialize)]
 pub struct CreateSubmissionRequest {
     pub submitter_wallet: String,
-    pub submission_uri: String,
+    pub submission_uri: Option<String>,
     pub note: Option<String>,
 }
 
@@ -13,7 +13,7 @@ pub struct SubmissionResponse {
     pub id: Uuid,
     pub bounty_id: Uuid,
     pub submitter_wallet: String,
-    pub submission_uri: String,
+    pub submission_uri: Option<String>,
     pub note: Option<String>,
     pub created_at: chrono::DateTime<chrono::Utc>,
 }

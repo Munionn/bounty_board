@@ -11,13 +11,16 @@
     "test:all": "cargo test --workspace",
     "check:all": "cargo check --workspace",
     "blockchain:build": "node -e 'fs.existsSync(\"blockchain/target\") || fs.symlinkSync(\"../target\", \"blockchain/target\")' && cd blockchain && anchor build",
+    "blockchain:deploy": "solana config set --url devnet && solana program deploy target/deploy/bounty_board.so --program-id target/deploy/bounty_board-keypair.json --url devnet",
     "blockchain:test": "node -e 'fs.existsSync(\"blockchain/target\") || fs.symlinkSync(\"../target\", \"blockchain/target\")' && cd blockchain && anchor test",
     "blockchain:test:unit": "cargo test -p bounty_board",
     "server:run": "cargo run -p server",
     "server:build": "cargo build -p server",
     "server:test": "cargo test -p server",
-    "client:build": "cargo build -p client",
-    "client:test": "cargo test -p client"
+    "server:seed": "psql \"$DATABASE_URL\" -f server/seeds/dev_bounties.sql",
+    "client:dev": "npm --prefix client run dev",
+    "client:build": "npm --prefix client run build",
+    "client:preview": "npm --prefix client run preview"
   },
   "keywords": [],
   "author": "",

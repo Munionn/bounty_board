@@ -4,6 +4,21 @@ use uuid::Uuid;
 
 pub use crate::models::BountyStatus;
 
+#[derive(Debug, Clone, Deserialize)]
+pub struct ListBountiesQuery {
+    pub status: Option<String>,
+    pub poster: Option<String>,
+    pub claimer: Option<String>,
+    pub limit: Option<i64>,
+    pub offset: Option<i64>,
+}
+
+#[derive(Debug, Clone, Deserialize)]
+pub struct ConfirmBountyRequest {
+    pub tx_signature: String,
+    pub pda_address: Option<String>,
+}
+
 /// Body for `POST /api/bounties`
 #[derive(Debug, Clone, Deserialize)]
 pub struct CreateBountyRequest {

@@ -1,0 +1,103 @@
+:root {
+  /* White theme — crystalline ink + teal */
+  --bg: #f7f8fa;
+  --bg-elevated: #ffffff;
+  --text: #5c6570;
+  --text-h: #0c1222;
+  --text-muted: #8b939e;
+  --accent: #0f766e;
+  --accent-strong: #0d5c56;
+  --accent-soft: rgba(15, 118, 110, 0.1);
+  --line: rgba(12, 18, 34, 0.08);
+  --ink: #0c1222;
+
+  --sans: 'Manrope', sans-serif;
+  --display: 'Syne', sans-serif;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --space: clamp(1.25rem, 4vw, 2.5rem);
+
+  font: 16px/1.55 var(--sans);
+  color: var(--text);
+  background: var(--bg);
+  color-scheme: light;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100svh;
+  background:
+    radial-gradient(1200px 700px at 12% -10%, rgba(15, 118, 110, 0.09), transparent 55%),
+    radial-gradient(900px 600px at 92% 8%, rgba(12, 18, 34, 0.05), transparent 50%),
+    linear-gradient(180deg, #ffffff 0%, var(--bg) 48%, #eef1f5 100%);
+  background-attachment: fixed;
+}
+
+#root {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow-x: clip;
+}
+
+#root::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.45;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, #000 20%, transparent 75%);
+  animation: grid-drift 28s linear infinite;
+}
+
+@keyframes grid-drift {
+  from {
+    background-position: 0 0, 0 0;
+  }
+  to {
+    background-position: 64px 64px, 64px 64px;
+  }
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--display);
+  font-weight: 700;
+  color: var(--text-h);
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+}

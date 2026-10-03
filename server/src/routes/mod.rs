@@ -1,5 +1,6 @@
 mod auth_route;
 mod bounty_route;
+mod chat_route;
 mod submission_route;
 mod user_route;
 
@@ -12,8 +13,8 @@ use axum::{
 use serde::Serialize;
 use sqlx::PgPool;
 
+use crate::app::AppState;
 use crate::db;
-use crate::AppState;
 
 pub fn router() -> Router<AppState> {
     Router::new()

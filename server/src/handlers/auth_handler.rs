@@ -4,39 +4,45 @@ use axum::{
     http::StatusCode,
 };
 
-use crate::AppState;
-use crate::dto::{AuthNonceQuery, AuthNonceResponse, AuthVerifyRequest, AuthVerifyResponse, UserResponse};
+use crate::app::AppState;
+use crate::auth::AuthUser;
+use crate::dto::{
+    AuthNonceQuery, AuthNonceResponse, AuthVerifyRequest, AuthVerifyResponse, UserResponse,
+};
+use crate::services::{auth as auth_service, user as user_service};
 
 /// GET /api/auth/nonce?wallet=...
 pub async fn get_nonce(
-    State(_state): State<AppState>,
+    State(state): State<AppState>,
     Query(query): Query<AuthNonceQuery>,
 ) -> Result<Json<AuthNonceResponse>, StatusCode> {
-    // TODO: persist nonce in DB/Redis with TTL
-    let nonce = uuid::Uuid::new_v4().to_string();
-    let message = format!(
-        "Sign in to Bounty Board\nWallet: {}\nNonce: {}",
-        query.wallet, nonce
-    );
+    let response = auth_service::create_nonce(&state, &query)
+        .await
+        .map_err(StatusCode::from)?;
 
-    Ok(Json(AuthNonceResponse {
-        wallet: query.wallet,
-        message,
-        nonce,
-    }))
+    Ok(Json(response))
 }
 
 /// POST /api/auth/verify
 pub async fn verify_signature(
-    State(_state): State<AppState>,
-    Json(_payload): Json<AuthVerifyRequest>,
+    State(state): State<AppState>,
+    Json(payload): Json<AuthVerifyRequest>,
 ) -> Result<Json<AuthVerifyResponse>, StatusCode> {
-    // TODO: verify ed25519 signature, upsert user, issue JWT
-    Err(StatusCode::NOT_IMPLEMENTED)
+    let response = auth_service::verify_and_issue_token(&state, &payload)
+        .await
+        .map_err(StatusCode::from)?;
+
+    Ok(Json(response))
 }
 
-/// GET /api/me
-pub async fn me(State(_state): State<AppState>) -> Result<Json<UserResponse>, StatusCode> {
-    // TODO: read wallet from JWT middleware / extensions
-    Err(StatusCode::NOT_IMPLEMENTED)
+/// GET /api/auth/me
+pub async fn me(
+    State(state): State<AppState>,
+    auth: AuthUser,
+) -> Result<Json<UserResponse>, StatusCode> {
+    let user = user_service::get_by_wallet(&state.db, auth.wallet())
+        .await
+        .map_err(StatusCode::from)?;
+
+    Ok(Json(UserResponse::from(user)))
 }

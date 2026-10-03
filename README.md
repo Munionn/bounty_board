@@ -11,9 +11,11 @@ bounty_board/
 │   ├── tests/            # TypeScript integration tests for programs
 │   ├── Anchor.toml       # Anchor framework configuration
 │   └── tsconfig.json     # TypeScript config for anchor tests
-├── client/               # Client-side / frontend application
+├── client/               # Frontend (Vite + React + TypeScript)
 │   ├── src/
-│   └── Cargo.toml
+│   ├── index.html
+│   ├── package.json
+│   └── vite.config.ts
 ├── server/               # Backend / server application
 │   ├── src/
 │   └── Cargo.toml
@@ -22,8 +24,8 @@ bounty_board/
 │   └── Cargo.toml
 ├── Cargo.toml            # Root Cargo workspace configuration
 ├── Makefile              # Root task runner & quick commands
-├── package.json          # Root NPM scripts & dev dependencies
-└── tsconfig.json         # Root TypeScript configuration
+├── package.json          # Root NPM scripts & Anchor test deps
+└── tsconfig.json         # Root TypeScript configuration (Anchor tests)
 ```
 
 ## Quick Start (Root Commands)
@@ -33,7 +35,7 @@ You can build, test, and run any component directly from the root workspace with
 ### Using Make
 
 ```bash
-# Build entire workspace (blockchain program, server, client, common)
+# Build Cargo workspace (blockchain program, server, common)
 make build
 
 # Run all unit and integration tests across the workspace
@@ -65,7 +67,8 @@ npm run blockchain:build   # Build Anchor program
 npm run blockchain:test    # Run Anchor integration tests
 npm run server:run         # Start backend server
 npm run server:build       # Build backend server
-npm run client:build       # Build client app
+npm run client:dev         # Start Vite + React frontend
+npm run client:build       # Production build of frontend
 ```
 
 ### Using Cargo
@@ -73,7 +76,6 @@ npm run client:build       # Build client app
 ```bash
 # Build any specific crate
 cargo build -p server
-cargo build -p client
 cargo build -p bounty_board
 
 # Run tests

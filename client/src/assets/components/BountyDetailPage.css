@@ -1,0 +1,215 @@
+.bounty-detail {
+  position: relative;
+  z-index: 1;
+  width: min(820px, 100%);
+  margin: 0 auto;
+  padding: 2rem var(--space) 3.5rem;
+  text-align: left;
+}
+
+.bounty-detail__nav {
+  margin-bottom: 1.25rem;
+}
+
+.bounty-detail__back {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.bounty-detail__back:hover {
+  color: var(--accent-strong);
+}
+
+.bounty-detail__panel {
+  background: var(--bg-elevated);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 1.5rem 1.4rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+}
+
+.bounty-detail__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.bounty-detail__eyebrow {
+  margin: 0 0 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent-strong);
+}
+
+.bounty-detail__title {
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  line-height: 1.15;
+}
+
+.bounty-detail__status-chip {
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.3rem 0.55rem;
+  border-radius: 6px;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+}
+
+.bounty-detail__status-chip--claimed {
+  background: rgba(12, 18, 34, 0.06);
+  color: var(--text-h);
+}
+
+.bounty-detail__status-chip--closed {
+  background: rgba(180, 35, 24, 0.08);
+  color: #b42318;
+}
+
+.bounty-detail__section h2 {
+  margin: 0 0 0.55rem;
+  font-family: var(--display);
+  font-size: 1rem;
+  color: var(--ink);
+}
+
+.bounty-detail__description {
+  margin: 0;
+  color: var(--text);
+  font-size: 1.02rem;
+  line-height: 1.65;
+  white-space: pre-wrap;
+}
+
+.bounty-detail__facts {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.85rem 1rem;
+}
+
+.bounty-detail__facts dt {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  margin-bottom: 0.2rem;
+}
+
+.bounty-detail__facts dd {
+  margin: 0;
+  font-weight: 600;
+  color: var(--text-h);
+  word-break: break-all;
+}
+
+.bounty-detail__muted {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.bounty-detail__subs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.bounty-detail__subs li {
+  padding: 0.75rem 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #f7f8fa;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.bounty-detail__subs a {
+  color: var(--accent-strong);
+  word-break: break-all;
+  font-weight: 600;
+}
+
+.bounty-detail__sub-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.35rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.bounty-detail__subs span {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.bounty-detail__subs p {
+  margin: 0.25rem 0 0;
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+.bounty-detail__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.bounty-detail__submit {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-top: 0.25rem;
+  border-top: 1px solid var(--line);
+}
+
+.bounty-detail__submit label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-h);
+}
+
+.bounty-detail__submit input,
+.bounty-detail__submit textarea {
+  font: inherit;
+  font-weight: 400;
+  padding: 0.7rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: #f7f8fa;
+  resize: vertical;
+}
+
+.bounty-detail__status {
+  color: var(--text-muted);
+}
+
+.bounty-detail__error {
+  margin: 0;
+  color: #b42318;
+  background: #fef3f2;
+  border: 1px solid #fecdca;
+  border-radius: 10px;
+  padding: 0.75rem 0.9rem;
+}
